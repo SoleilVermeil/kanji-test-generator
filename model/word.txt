@@ -1,0 +1,3 @@
+\begin{tcolorbox}[squeezed title*=@FR@, colbacktitle=white, coltitle=@COLTITLE@, boxrule=0.5pt, arc=0pt, colframe=black, colback=white, valign=center, halign=center, colupper=@COLUPPER@]
+    \fontsize{@FONTSIZE@}{@FONTSIZE@}\selectfont\begin{CJK}{UTF8}{min}@JP@\end{CJK}
+\end{tcolorbox}

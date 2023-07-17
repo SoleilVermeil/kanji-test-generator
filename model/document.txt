@@ -1,0 +1,39 @@
+\documentclass[a4paper,12pt,addpoints]{exam}
+
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{CJKutf8}
+\usepackage[margin=1in]{geometry}
+\usepackage{tcolorbox}
+
+\tcbuselibrary{raster}
+\title{\textbf{@TITLE@}}
+\author{@SUBTITLE@}
+\date{\today}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+    \maketitle
+
+    \begin{minipage}{10cm}
+        Nom de famille: \dotfill
+        \par\null\par
+        Prénom: \dotfill
+        \par\null\par
+        Date: \dotfill
+    \end{minipage}
+    \hspace{1cm}Note: \dotfill
+
+    \vspace{1cm}
+
+    \hrule
+
+    \vspace{1cm}
+
+    \textbf{@INSTRUCTIONS@\hfill(...../@POINTS@ pts)}
+
+    @CONTENT@
+
+\end{document}

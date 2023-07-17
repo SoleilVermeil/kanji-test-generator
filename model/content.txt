@@ -1,0 +1,3 @@
+\begin{tcbraster}[raster columns=@COLS@]
+    @WORDS@
+\end{tcbraster}
