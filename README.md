@@ -36,3 +36,9 @@ To generate a kanji test with 4 columns and 5 rows, run the following command:
 ```
 python kanji_test_generator.py -c 4 -r 5
 ```
+
+To generate the files inside `example/` of this repository, the following command was used:
+
+```
+python nihongo.py --title "Example of exam" --subtitle "(c) \\texttt{SoleilVermeil}" --columns 4 --rows 4 --dir example --seed 42 --instructions "Fill the following table. When there is a word, draw the corresponding kanji. When there is a kanji drawn, write the corresponding definition." --language en
+```

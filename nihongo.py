@@ -18,7 +18,7 @@ parser.add_argument("-st", "--subtitle", type=str, default=r"\begin{CJK}{UTF8}{m
 parser.add_argument("-i", "--instructions", type=str, default="Complete the table below.", help="Instructions for the students")
 parser.add_argument("-c", "--columns", type=int, help="Number of columns", required=True)
 parser.add_argument("-r", "--rows", type=int, help="Number of rows", required=True)
-parser.add_argument("-o", "--output", type=str, help="Name of the folder to store output", default="output")
+parser.add_argument("-o", "--dir", type=str, help="Name of the folder to store the generated files", default="dir")
 parser.add_argument("-s", "--seed", type=int, help="Seed for the random generator", default=-1)
 
 # TODO
@@ -33,8 +33,6 @@ args = parser.parse_args()
 # +--------------------------------------------+
 
 df__ = pd.read_csv("words.csv", sep=";")
-
-print(df__.to_markdown())
 
 first_zero_idx = df__.query("fr == '?'").index[0]
 last_index = floor((first_zero_idx - 1) / 5) * 5
@@ -72,7 +70,6 @@ assert COLS * ROWS % 2 == 0, "The product of the number of rows and columns must
 FONTSIZE = int(200 / COLS)
 TRUEFALSE = [True] * int(COLS * ROWS / 2) + [False] * int(COLS * ROWS / 2)
 random.shuffle(TRUEFALSE)
-print(TRUEFALSE)
 
 # +------------------------------------------------------------+
 # | Picking rows according to the previously chosen parameters |
@@ -112,17 +109,17 @@ for version in ["test", "solution"]:
     document = document.replace("@INSTRUCTIONS@", args.instructions)
     document = document.replace("@POINTS@", str(COLS * ROWS))
 
-    if not os.path.exists(args.output):
-        os.makedirs(args.output)
+    if not os.path.exists(args.dir):
+        os.makedirs(args.dir)
         
-    with open(f"{args.output}/{version}.tex", "w") as f:
+    with open(f"{args.dir}/{version}.tex", "w") as f:
         f.write(document)
 
-# +-----------------------------+
-# | Print the last instructions |
-# +-----------------------------+
+# +---------------------------------------------------+
+# | Converts the .tex file to a .pdf using 'pdflatex' |
+# +---------------------------------------------------+
 
-os.system(f"cd {args.output} && pdflatex test.tex && pdflatex solution.tex && cd ..")
-os.system(f"cd {args.output} && rm *.tex *.aux *.log && cd ..")
+os.system(f"cd {args.dir} && pdflatex test.tex && pdflatex solution.tex && cd ..")
+os.system(f"cd {args.dir} && rm *.tex *.aux *.log && cd ..")
 
 print("Done !")
