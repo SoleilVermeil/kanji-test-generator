@@ -1,0 +1,8 @@
+language: 'en'
+title: 'Example of exam'
+subtitle: '(c) \\texttt{SoleilVermeil}'
+instructions: 'Fill the following table. When there is a word, draw the corresponding kanji. When there is a kanji drawn, write the corresponding definition.'
+columns: 4
+rows: 4
+dir: 'example'
+seed: 1952653647538447807

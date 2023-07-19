@@ -3,6 +3,7 @@ from math import floor
 import random
 import os
 import argparse
+import sys
 
 # +-----------------------+
 # | Setting up the parser |
@@ -32,12 +33,7 @@ args = parser.parse_args()
 # | Importing files and sorting the valid rows |
 # +--------------------------------------------+
 
-df__ = pd.read_csv("words.csv", sep=";")
-
-first_zero_idx = df__.query("fr == '?'").index[0]
-last_index = floor((first_zero_idx - 1) / 5) * 5
-
-df_ = df__.iloc[:last_index]
+df_ = pd.read_csv("words.csv", sep=";")
 
 # +------------------------------------------------------------+
 # | Defining some variables for the generation of the document |
@@ -54,9 +50,15 @@ with open("model/content.txt", "r") as f:
 WORD: str = None
 with open("model/word.txt", "r") as f:
     WORD = f.read()
-    
-if args.seed != -1:
-    random.seed(args.seed)
+
+# TODO : improve the following code to make it more clear  
+assert args.seed >= -1, "The seed must be a positive integer or -1"
+if args.seed >= 0:
+    seed = args.seed
+    random.seed(seed)
+elif args.seed == -1:
+    seed = random.randrange(sys.maxsize)
+    random.seed(seed)
 
 # +------------------------------------------------------------------------+
 # | Setting some variables. They will then influence which rows are picked |
@@ -112,8 +114,15 @@ for version in ["test", "solution"]:
     if not os.path.exists(args.dir):
         os.makedirs(args.dir)
         
-    with open(f"{args.dir}/{version}.tex", "w") as f:
+    with open(os.path.join(args.dir, f"{version}.tex"), "w") as f:
         f.write(document)
+
+with open(os.path.join(args.dir, f"params.txt"), "w") as f:
+    for arg in vars(args):
+        if arg == "seed":
+            f.write(f"{arg}: {repr(seed)}\n")
+        else:
+            f.write(f"{arg}: {repr(getattr(args, arg))}\n")
 
 # +---------------------------------------------------+
 # | Converts the .tex file to a .pdf using 'pdflatex' |
