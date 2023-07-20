@@ -19,7 +19,7 @@ parser.add_argument("-st", "--subtitle", type=str, default=r"\begin{CJK}{UTF8}{m
 parser.add_argument("-i", "--instructions", type=str, default="Complete the table below.", help="Instructions for the students")
 parser.add_argument("-c", "--columns", type=int, help="Number of columns", required=True)
 parser.add_argument("-r", "--rows", type=int, help="Number of rows", required=True)
-parser.add_argument("-o", "--dir", type=str, help="Name of the folder to store the generated files", default="dir")
+parser.add_argument("-o", "--dir", type=str, help="Name of the folder to store the generated files", default="output")
 parser.add_argument("-s", "--seed", type=int, help="Seed for the random generator", default=-1)
 
 # TODO
