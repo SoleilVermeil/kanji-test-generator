@@ -25,7 +25,7 @@ The Kanji Test Generator accepts the following command-line arguments:
 - `-i`, `--instructions`: Specifies the instruction given to the student. The default value is "Complete the table below.".
 - `-c`, `--columns`: Specifies the number of columns in the test. This argument is **required**.
 - `-r`, `--rows`: Specifies the number of rows in the test. This argument is **required**.
-- `-o`, `--output`: Specifies the name of the folder to store the output. The default value is "output".
+- `-d`, `--dir`: Specifies the name of the folder to store the output. The default value is `output`.
 - `-s`, `--seed`: Specifies the seed for the random generator. The default value is -1. Change this value to any number to have a deterministic output.
 
 Also note that for technical reasons, the product of the number of rows and columns should be even (ie. they should not be both odd).
